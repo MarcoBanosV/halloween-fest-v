@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halloween Fest V - Invitación Oficial</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        halloween: {
+                            purple: '#2e1065',
+                            darkpurple: '#130528',
+                            orange: '#f97316',
+                            neonGreen: '#22c55e',
+                            darkbg: '#090314'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        .font-creepster {
+            font-family: 'Creepster', cursive, sans-serif;
+        }
+        /* Spooky background mist / glow animation */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.05); }
+        }
+        .mist-bg {
+            animation: pulse-glow 8s ease-in-out infinite;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090314;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #7c2d12;
+            border-radius: 4px;
+        }
+
+        /* Efecto de desvanecimiento lateral profesional para el fondo */
+        .immersive-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .immersive-bg img {
+            width: 100%;
+            height: 100%;
+            /* Ajustamos el enfoque vertical para que se centre más en la parte superior (Art the Clown y el título) */
+            object-fit: cover;
+            object-position: center 40%; /* Cambia este valor si quieres subirlo o bajarlo más (ej. 15% o 25%) */
+            filter: blur(5px) brightness(0.35);
+            transform: scale(1.1);
+            /* Máscara de desvanecimiento horizontal: opaco al centro (80%), difuminado en los extremos (10% izq / 10% der) */
+            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+        }
+    </style>
+</head>
+<body class="bg-halloween-darkbg text-gray-100 min-h-screen relative overflow-x-hidden font-sans selection:bg-orange-500 selection:text-white">
+
+    <!-- Audio de Fondo de la Página -->
+    <!-- Reemplaza 'tu-cancion.mp3' por la ruta de tu archivo de audio local o enlace -->
+    <audio id="bg-audio" loop>
+        <source src="src/music/workofart.wav" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- Botón flotante para controlar la música de la web -->
+    <div class="fixed bottom-5 right-5 z-50">
+        <button id="audio-control-btn" onclick="toggleBackgroundAudio()" class="flex items-center gap-2 bg-purple-900/80 hover:bg-orange-600 border border-purple-500/50 text-white px-4 py-2 rounded-full shadow-lg backdrop-blur-md transition-all duration-300">
+            <i data-lucide="music" class="w-5 h-5 text-orange-400 animate-bounce" id="music-icon"></i>
+            <span id="audio-text" class="text-xs font-semibold">Reproducir Música</span>
+        </button>
+    </div>
+
+    <!-- Fondo Inmersivo Difuminado con la Invitación y Laterales Morados -->
+    <div class="immersive-bg">
+        <div class="absolute inset-0 bg-halloween-darkbg/70 z-10"></div>
+        <img src="src/img/inv1v1.jpg" alt="Fondo Inmersivo Halloween Fest V">
+    </div>
+
+    <!-- Capas de Ambientación / Niebla -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-purple-900/20 rounded-full blur-3xl mist-bg"></div>
+        <div class="absolute top-1/3 -right-40 w-96 h-96 bg-orange-600/15 rounded-full blur-3xl mist-bg" style="animation-delay: 3s;"></div>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div class="relative z-10 max-w-4xl mx-auto px-4 py-8 sm:py-12 flex flex-col items-center">
+
+        <!-- Top Header Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/30 text-purple-300 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-6 shadow-lg shadow-purple-900/20">
+            <i data-lucide="skull" class="w-4 h-4 text-orange-500 animate-pulse"></i>
+            <span>Edición Aniversario Oficial</span>
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="font-creepster text-5xl sm:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-orange-400 via-orange-500 to-purple-600 text-center tracking-wide drop-shadow-[0_5px_15px_rgba(249,115,22,0.4)] mb-2">
+            HALLOWEEN FEST V
+        </h1>
+        <p class="text-orange-400 font-semibold tracking-widest text-sm sm:text-base uppercase mb-8 text-center drop-shadow">
+            PREMIO AL MEJOR DISFRAZ! • Join us if u dare!
+        </p>
+
+        <!-- Invitation Card Section with Modal Trigger -->
+        <div class="w-full max-w-md bg-gradient-to-b from-purple-900/40 to-black/80 rounded-2xl border-2 border-purple-500/30 p-3 sm:p-4 shadow-[0_0_35px_rgba(126,34,206,0.25)] backdrop-blur-sm mb-10 transition-all duration-300 hover:border-orange-500/50 group">
+            <div class="relative overflow-hidden rounded-xl cursor-pointer" onclick="openModal()">
+                <!-- Invitation Image (Nota: evita usar rutas del disco local como E:\ ya que los navegadores por seguridad no las cargan en producción. Usa rutas relativas como 'img/inv1v1.jpg') -->
+                <img id="main-invitation-img" src="src/img/inv1v1.jpg" alt="Halloween Fest V Invitación" class="w-full h-auto object-cover rounded-xl transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1508385082359-f38ae991e8f2?q=80&w=600&auto=format&fit=crop'">
+                <!-- Hover Zoom Overlay -->
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 text-white font-semibold">
+                    <i data-lucide="zoom-in" class="w-6 h-6 text-orange-400"></i>
+                    <span>Ampliar Invitación</span>
+                </div>
+            </div>
+            <p class="text-center text-xs text-gray-400 mt-3 flex items-center justify-center gap-1.5">
+                <i data-lucide="info" class="w-3.5 h-3.5 text-orange-400"></i> Haz clic en la imagen para verla en pantalla completa
+            </p>
+        </div>
+
+        <!-- Hosted By -->
+        <div class="w-full bg-black/60 border border-purple-500/30 rounded-2xl p-6 sm:p-8 backdrop-blur-md shadow-xl mb-10">
+            <h2 class="text-xl sm:text-2xl font-bold text-orange-400 mb-6 flex items-center gap-2 border-b border-purple-500/20 pb-3">
+                Hosted By: Marco & Nelly
+            </h2>
+        </div>
+        
+        <!-- Event Details Card -->
+        <div class="w-full bg-black/60 border border-purple-500/30 rounded-2xl p-6 sm:p-8 backdrop-blur-md shadow-xl mb-10">
+            <h2 class="text-xl sm:text-2xl font-bold text-orange-400 mb-6 flex items-center gap-2 border-b border-purple-500/20 pb-3">
+                <i data-lucide="calendar-days" class="w-6 h-6 text-orange-500"></i>
+                Detalles del Evento
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm sm:text-base">
+                <!-- Date & Time -->
+                <div class="flex items-start gap-3 bg-purple-950/30 p-4 rounded-xl border border-purple-900/40">
+                    <div class="p-2.5 rounded-lg bg-orange-500/10 text-orange-400 mt-0.5">
+                        <i data-lucide="clock" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="block text-xs uppercase tracking-wider text-gray-400 font-semibold">Fecha y Hora</span>
+                        <strong class="text-white text-lg font-bold">24 de Octubre</strong>
+                        <p class="text-orange-300">17:00 hrs (5:00 PM)</p>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="flex items-start gap-3 bg-purple-950/30 p-4 rounded-xl border border-purple-900/40">
+                    <div class="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-400 mt-0.5">
+                        <i data-lucide="map-pin" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="block text-xs uppercase tracking-wider text-gray-400 font-semibold">Ubicación</span>
+                        <strong class="text-white font-medium">21 de marzo #7</strong>
+                        <p class="text-gray-300 text-xs sm:text-sm mt-0.5">San Francisco Atexcatzingo, Tetla, Tlax.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rules & Tags -->
+            <div class="mt-6 pt-6 border-t border-purple-500/20 flex flex-wrap items-center justify-center gap-3">
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-orange-500/20 text-orange-300 text-xs sm:text-sm font-bold border border-orange-500/40">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i> Disfraz obligatorio!
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-purple-600/20 text-purple-300 text-xs sm:text-sm font-bold border border-purple-500/40">
+                    <i data-lucide="theater" class="w-4 h-4"></i> Temática libre!
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-red-950/60 text-red-400 text-xs sm:text-sm font-bold border border-red-500/40">
+                    <i data-lucide="ban" class="w-4 h-4"></i> No niños
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-red-950/60 text-red-400 text-xs sm:text-sm font-bold border border-red-500/40">
+                    <i data-lucide="shield-alert" class="w-4 h-4"></i> +18
+                </span>
+            </div>
+        </div>
+
+        <!-- Interactive Action Links & Extras Section -->
+        <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+
+            <!-- Amazon Wishlist Button -->
+            <a href="https://www.amazon.com.mx/hz/wishlist/ls/TUYD0C4X0BJ4?ref_=wl_share" target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden bg-gradient-to-br from-amber-950/80 to-black border border-orange-500/40 rounded-2xl p-5 text-center transition-all duration-300 hover:border-orange-400 hover:shadow-[0_0_20px_rgba(249,115,22,0.3)] flex flex-col items-center justify-center">
+                <div class="w-12 h-12 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <i data-lucide="gift" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-bold text-white text-base mb-1">Wishlist Amazon</h3>
+                <p class="text-xs text-gray-400">Ideas de regalos / barra</p>
+                <span class="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-orange-400 group-hover:underline">
+                    Ver lista <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </span>
+            </a>
+
+            <!-- Spotify Playlist Button -->
+            <a href="https://open.spotify.com/playlist/2qyjQ07fhZtcd2UndzeCXp?si=c0fff6f55d9a4338" target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden bg-gradient-to-br from-green-950/80 to-black border border-green-500/40 rounded-2xl p-5 text-center transition-all duration-300 hover:border-green-400 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] flex flex-col items-center justify-center">
+                <!-- <div class="w-12 h-12 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <i data-lucide="music" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-bold text-white text-base mb-1">Playlist Spotify</h3>
+                <p class="text-xs text-gray-400">Escucha la música oficial</p> -->
+                <iframe id="spotify-player" data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2qyjQ07fhZtcd2UndzeCXp?utm_source=generator&si=4db48ec9033b4089" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <span class="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-green-400 group-hover:underline">
+                    Abrir en Spotify <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </span>
+            </a>
+
+            <!-- Copy Details Button -->
+            <button onclick="copyEventDetails()" class="group relative overflow-hidden bg-gradient-to-br from-purple-950/80 to-black border border-purple-500/40 rounded-2xl p-5 text-center transition-all duration-300 hover:border-purple-400 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] flex flex-col items-center justify-center cursor-pointer">
+                <div class="w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <i data-lucide="copy" class="w-6 h-6" id="copy-icon"></i>
+                </div>
+                <h3 class="font-bold text-white text-base mb-1" id="copy-title">Copiar Dirección</h3>
+                <p class="text-xs text-gray-400">Para enviar por WhatsApp</p>
+                <span class="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-purple-300 group-hover:underline" id="copy-status">
+                    Copiar datos <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                </span>
+            </button>
+        </div>
+
+        <!-- Footer Note -->
+        <footer class="text-center text-xs text-gray-500 pb-8">
+            <p>🎃 HALLOWEEN FEST V • ¡Prepara tu disfraz y trae tus bebidas favoritas! 🍻</p>
+        </footer>
+
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="imageModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300" onclick="closeModal()">
+        <div class="relative max-w-3xl w-full max-h-[90vh] flex items-center justify-center" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute -top-12 right-0 sm:-right-4 text-white bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <img src="src/img/inv1v1.jpg" alt="Halloween Fest V Invitación Completa" class="max-h-[85vh] w-auto object-contain rounded-xl shadow-2xl border border-purple-500/30">
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Modal Controls
+        const modal = document.getElementById('imageModal');
+
+        function openModal() {
+            modal.classList.remove('hidden');
+            modal.classList.remove('opacity-0');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Copy Event Details Function
+        function copyEventDetails() {
+            const textToCopy = `🎃 HALLOWEEN FEST V 🎃\n¡PREMIO AL MEJOR DISFRAZ!\n\n📅 Fecha: 24 de Octubre - 17:00 hrs\n📍 Ubicación: 21 de marzo #7, San Francisco Atexcatzingo, Tetla, Tlax.\n\n⚠️ Disfraz obligatorio! • Temática libre! • No niños • +18\n¡Join us if u dare!`;
+            
+            // Fallback for iframe copy compatibility
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    showCopySuccess();
+                }).catch(() => {
+                    fallbackCopy(textToCopy);
+                });
+            } else {
+                fallbackCopy(textToCopy);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showCopySuccess();
+            } catch (err) {
+                alert('No se pudo copiar automáticamente.');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function showCopySuccess() {
+            const titleEl = document.getElementById('copy-title');
+            const statusEl = document.getElementById('copy-status');
+            const iconEl = document.getElementById('copy-icon');
+
+            titleEl.textContent = '¡Copiado!';
+            statusEl.innerHTML = '¡Listo para WhatsApp! <i data-lucide="check" class="w-3.5 h-3.5 inline"></i>';
+            iconEl.setAttribute('data-lucide', 'check');
+            lucide.createIcons();
+
+            setTimeout(() => {
+                titleEl.textContent = 'Copiar Dirección';
+                statusEl.innerHTML = 'Para enviar por WhatsApp <i data-lucide="share-2" class="w-3.5 h-3.5 inline"></i>';
+                iconEl.setAttribute('data-lucide', 'copy');
+                lucide.createIcons();
+            }, 3000);
+        }
+
+        // --- SISTEMA DE AUDIO Y CONTROL DE SPOTIFY ---
+        const bgAudio = document.getElementById('bg-audio');
+        const audioText = document.getElementById('audio-text');
+        const musicIcon = document.getElementById('music-icon');
+        let isPlaying = false;
+
+        function toggleBackgroundAudio() {
+            if (isPlaying) {
+                bgAudio.pause();
+                audioText.textContent = "Reproducir Música";
+                musicIcon.classList.remove('animate-spin');
+            } else {
+                bgAudio.play().then(() => {
+                    audioText.textContent = "Pausar Música";
+                    musicIcon.classList.add('animate-spin');
+                }).catch(error => {
+                    console.log("Error al reproducir audio (requiere interacción previa):", error);
+                });
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Detectar interacción con el iframe de Spotify para pausar la música de la web
+        // Nota: Por políticas de seguridad de los navegadores (CORS), los iframes externos 
+        // no permiten leer directamente su estado interno de reproducción, pero podemos 
+        // detectar cuando el usuario hace clic o interactúa directamente sobre el área del iframe de Spotify.
+        const spotifyPlayer = document.getElementById('spotify-player');
+        
+        window.addEventListener('blur', () => {
+            // Si el usuario hace clic dentro del iframe de Spotify, la ventana principal pierde el foco (blur)
+            setTimeout(() => {
+                if (document.activeElement === spotifyPlayer) {
+                    if (isPlaying) {
+                        bgAudio.pause();
+                        isPlaying = false;
+                        audioText.textContent = "Reproducir Música";
+                        musicIcon.classList.remove('animate-spin');
+                        console.log("Música de la web pausada por interacción con Spotify.");
+                    }
+                }
+            }, 300);
+        });
+    </script>
+</body>
+</html>
